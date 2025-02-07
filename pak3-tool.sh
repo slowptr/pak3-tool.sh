@@ -1,19 +1,4 @@
 #!/bin/bash
-#
-# pak3-tool.sh
-#
-# This script extracts a specified .pak3 archive into the current folder.
-# Later, after you modify its contents, it repacks the current folder into
-# a new archive having the same name as the original, while first renaming
-# the original archive with a .bk suffix.
-#
-# Requirements:
-#   - 7z (part of p7zip-full on many distributions)
-#
-# Usage:
-#   ./pak3-tool.sh unpack archive.pak3
-#   (Make your modifications in the current folder, then run:)
-#   ./pak3-tool.sh pack archive.pak3
 
 usage() {
     echo "Usage: $0 {unpack|pack} archive.pak3"
@@ -54,7 +39,7 @@ case "$ACTION" in
         if [ -f "$ARCHIVE" ]; then
             BACKUP="${ARCHIVE}.bk"
             echo "Renaming original archive '$ARCHIVE' to '$BACKUP'..."
-            # Remove any existing backup
+            # remove any existing backup
             if [ -f "$BACKUP" ]; then
                 echo "Removing existing backup '$BACKUP'..."
                 rm -f "$BACKUP" || { echo "Error: Could not remove existing backup."; exit 1; }
